@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" as="image" href="image/picture6_mybanner.png" />
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#b3f9da">
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+    <title>FoodDrinkApp_Main</title>
+    <script src="scriptFDSimp1.js"></script>
+    <!-- <script type="module" src="modulescriptFDSimp1.js"></script> -->
+</head>
+<body onload = dfSelection();reLoad()>
+
+    <header>
+        <h1>What Can I Drink or Eat?</h1>
+    </header>
+
+    <section class="banner">
+        <img src="image/picture6_mybanner.png" alt="Food Drink App Welcome Banner" class="responsive-img">
+    </section>
+
+
+    <form id="inputValue" name="inputValue" target="_blank">
+        <div>
+            <h1>Enter Item Name:</h1>
+            <!-- <label for="itemname">Name:</label> -->
+            <input type="text" id="itemname" name="itemname" placeholder="item name" required>
+        </div>
+        <br><br>
+
+        <!-- <p>Select Item Type:</p>
+        <input type="image" src="/image/figma_drink.png" alt="Drink" name="type" id="image-1">
+        <label for="image-1">Drink</label>
+        <input type="image" src="/image/figma_eat.png" alt="Food" name="type" id="image-2">
+        <label for="image-2">Food</label>
+        <br><br> -->
+
+        <!-- can color the different levels according to IDDSI standards -->
+
+        <div> 
+            <h1>Is it a drink or food?</h1>
+            <label for="drinkfood">
+                <select name="drinkfood" id="drinkfood" required>
+                    <option value="" selected>--Select one of the following--</option>
+                    <option value="dl">Drink/Liquid</option>
+                    <option value="fl">Food/Solid</option>       
+                </select>
+            </label>
+        </div>
+        <br><br>
+
+        <div id= "DF" class="hidden">
+            <section id= "drink" class="hidden"> 
+            <h1>Select Recommended Drink Level:</h1>
+             <label for="drinklevel">
+                <select name="drinklevel" id="drinklevel" required>
+                    <option value="" selected>--Select one of the following--</option>
+                    <option value="dl0">IDDSI Level 0, Thin</option>
+                    <option value="dl1">IDDSI Level 1, Slighlty Thick</option>  
+                    <option value="dl2">IDDSI Level 2, Mildly Thick</option>
+                    <option value="dl3">IDDSI Level 3, Moderately Thick</option>
+                    <option value="dl4">IDDSI Level 4, Extremely Thick</option>
+                    <option value="dln">Don't know</option>           
+                </select>
+             </label>
+            </section>
+            <br><br>
+
+            <section id= "food" class="hidden">
+            <h1>Select Recommended Food Level:</h1>
+             <label for="foodlevel">
+                <select name="foodlevel" id="foodlevel" required>
+                    <option value="" selected>--Select one of the following--</option>
+                    <option value="fl3">IDDSI Level 3, Liquidised</option>
+                    <option value="fl4">IDDSI Level 4, Pureed</option>  
+                    <option value="fl5">IDDSI Level 5, Mince & Moist</option>
+                    <option value="fl6">IDDSI Level 6, Soft & Bite-Sized</option>
+                    <option value="fl7e">IDDSI Level 7, Easy to chew</option>
+                    <option value="fl7r">IDDSI Level 7, Regular</option>
+                    <option value="fln">Don't know</option>     
+                </select>
+             </label> 
+            </section>
+        </div>
+        <br><br>
+        
+        <div>
+            <input type="button" id="submit" onclick="getInput()" value="Submit Selection">
+        </div>
+
+    </form>
+    <br>
+
+    <!-- The following worked outside of the 'form' -->
+    <!-- <button onclick="document.location='index_FD2.html'">linked page</button> -->
+    <!-- <button onclick="linkedPages()">linked page</button> -->
+<!-- 
+    <p id="showInput"></p> -->
+
+
+    <footer>
+     <p class="copyright">Copyright 2025 FoodDrink App</p>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#b3f9da">
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+    <title>FoodDrinkApp_Decision_7e</title>
+    <script src="scriptFDSimp1.js"></script>
+    <!-- <script type="module" src="modulescriptFDSimp1.js"></script> -->
+</head>
+<body onload = readStValues();reLoad()>
+
+    <header>
+        <h1>I want to 
+            <span id="inputType"></span> 
+            <span id="dispInput1" class="break-here"></span>
+        </h1>
+    </header>
+    <br>
+
+
+    <div id="descriptions" class="description">
+    </div>
+    <div id="decisions" class="description">
+    </div>
+    <br>
+
+    <div id="videos" class="video">
+        <h2>See a video of selected item level.</h2>
+        <button id="videoDemo" class="my-btn" onclick="videoDemo()">Video</button>
+    
+        <iframe id="videoFrame" class="hidden responsive-vid" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <br>
+    <br>
+
+    <div class="recommendation">
+        <h2>Your Recommended Levels:</h2>
+        <section id= "drink" class="hidden"> 
+         <h3>Drink Level: <span id="dispInput2" class="break-here"></span></h3>
+        </section>
+        <section id= "food" class="hidden">
+         <h3>Food Level: <span id="dispInput3" class="break-here"></span></h3>
+        </section>
+    </div>
+    <br> 
+
+    <div class="navigation">
+        <button class="my-btn" onclick="goBack()">Back</button>
+        <button class="my-btn" onclick="goHome()">Home</button>
+    </div>
+    <br> 
+
+
+    <footer>
+     <p class="copyright">Copyright 2025 FoodDrink App</p>
+    </footer>
+
+
+</body>
+</html>

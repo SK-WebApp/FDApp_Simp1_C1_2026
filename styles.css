@@ -1,0 +1,205 @@
+/* Reset some defaults for consistency */
+
+html { 
+ font-size: 16px; 
+} /* default */
+
+body {
+  margin: clamp(0.75rem, 3vw, 3rem);
+  font-family: Verdana, sans-serif;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+header {
+  position: sticky;
+  background: rgb(208, 241, 214);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1.5rem);
+  z-index: 1000; /* stacking order, what comes on top */
+}
+
+form {
+  position: sticky;
+  background: rgb(246, 255, 171);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1.5rem);
+}
+
+footer {
+  position: sticky;
+  background: rgb(231, 231, 229);
+  padding: clamp(0.5rem, 2vw, 1.5rem);
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+
+label {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+}
+
+input {
+  width: 100%;
+  max-width: 25rem;
+  padding: clamp(1rem, 2vw, 1.5rem); /* adjusts with screen size */
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  color: #333;
+  box-sizing: border-box;
+}
+
+#submit {
+  background-color: #fad0a1;
+  font-weight: bold;
+}
+
+select {
+  width: 100%;
+  max-width: 25rem;
+  padding: clamp(8px, 2vw, 12px); /* adjusts with screen size */
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  color: #333;
+  box-sizing: border-box;
+  height: auto;
+
+ 
+  white-space: normal;    /* allow text to wrap */
+  overflow-wrap: break-word; /* wrap long words */
+
+}
+
+/* select option {
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+} */
+
+.responsive-img {
+  max-width: 80%;   /* Scale image down if container is smaller */
+  height: auto;      /* Maintain aspect ratio */
+  display: block;         /* So margin works */
+  margin: 0 auto;         /* Centers the image horizontally */
+  padding: 20px;          /* Your responsive padding */
+  box-sizing: border-box; /* Includes padding in total width */
+  color: rgb(117, 115, 115);
+}
+
+.break-here {
+  display: inline; /* Default: no break */
+}
+
+@media (max-width: 600px) {
+  .break-here {
+    display: block; /* Break on smaller screens */
+  }
+}
+
+.caution {
+  position: sticky;
+  background: rgb(255, 255, 255);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  text-align: left;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: rgb(143, 56, 56);
+  z-index: 1000; /* stacking order, what comes on top */
+}
+
+.description {
+  position: sticky;
+  background: rgb(226, 225, 225);
+  padding: clamp(0.5rem, 0.5vw, 1rem);
+  text-align: center;
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  font-weight: bold;
+  color: rgb(148, 21, 21);
+  z-index: 1000; /* stacking order, what comes on top */
+}
+
+.video {
+  position: sticky;
+  background: rgb(246, 255, 171);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+
+  width: 100%;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.recommendation {
+  position: sticky;
+  background: rgb(246, 246, 237);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: rgb(62, 62, 62);
+  z-index: 1000; /* stacking order, what comes on top */
+}
+
+.navigation {
+  position: sticky;
+  background: rgb(208, 241, 214);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  z-index: 1000; /* stacking order, what comes on top */
+
+  display: flex;
+  /* previous code for responsive space between buttons
+  gap: clamp(5rem, 20vw, 50rem);  */
+  gap: clamp(1.5rem, 20vw, 5rem);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.my-btn {
+  flex: 1; /* optional: makes buttons equal width */
+  /* flex: 0 1 auto; */
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  background-color: #d6d8d8;
+  color: rgb(62, 62, 62);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: auto;
+
+  padding: clamp(0.6em, 2vw, 2em) clamp(1em, 3vw, 2.5em);
+}
+
+#videoDemo {
+  margin-bottom: 20px;
+}
+
+.responsive-vid {
+  width: 100%;
+  max-width: 40rem;
+  aspect-ratio: 16 / 9; /* maintain 16:9 ratio */
+  height: auto;
+  padding: clamp(10px, 2vw, 20px); /* responsive padding */
+  box-sizing: border-box; /* padding included in width */
+  background: #ffffff;
+  border-radius: 12px; /* optional */
+}
+
+
+.hidden {
+  display: none;
+}
+.visible {
+  display: block; /* or inline-block */
+}
+
+

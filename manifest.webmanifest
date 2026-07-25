@@ -1,0 +1,59 @@
+{
+	"name": "Food-Drink Levels",
+	"short_name": "FoodDrinkLev",
+	"start_url": "index.html", 
+	"description": "A tool to help check IDDSI Levels for safe swallowing",
+    "scope": "./",
+	"display": "standalone", 
+	"background_color": "#fcf7c7", 
+	"theme_color": "#b3f9da",
+	"orientation": "portrait-primary",
+	"icons": [
+		{
+		  "src": "favicon/android-chrome-192x192.png",
+		  "type": "image/png",
+		  "sizes": "192x192",
+		  "purpose": "any"
+		},
+		{
+		  "src": "favicon/android-chrome-384x384.png",
+		  "type": "image/png",
+		  "sizes": "384x384",
+		  "purpose": "any"
+		},
+        {   
+		  "src": "favicon/android-chrome-512x512.png",
+		  "type": "image/png",
+		  "sizes": "512x512",
+		  "purpose": "any"
+		},
+        {
+          "src": "favicon/apple-touch-icon.png",
+          "sizes": "180x180",
+          "type": "image/png",
+          "purpose": "any"
+        },
+        {
+		  "src": "favicon/maskable_icon_1280.png",
+		  "type": "image/png",
+		  "sizes": "1280x1280",
+		  "purpose": "maskable"
+		}
+	], 
+    "screenshots": [
+        {
+            "src": "screenshots/WebApp_Desk.png",
+            "sizes": "1280x803",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "FoodDrink app main screen on desktop"
+        },
+        {
+            "src": "screenshots/WebApp_Mobile.png",
+            "sizes": "390x797",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "FoodDrink app main screen on mobile"
+        }
+    ]       
+}

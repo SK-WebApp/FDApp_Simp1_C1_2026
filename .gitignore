@@ -1,0 +1,28 @@
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local secrets and configuration
+.env
+.env.*
+
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+
+# Editor settings and temporary files
+.vscode/
+.idea/
+*.swp
+*~
+*.tmp
+*.temp
+
+# Browser-test output
+playwright-report/
+test-results/
+blob-report/
