@@ -30,9 +30,9 @@
     <form id="FD4" name="FD4" target="_blank">
 
         <div>
-            <h2>Match Consistency:</h2>
-            <label for="consitency"></label>
-            <select name="consistency" id="consistency" required>
+            <h2 id="consistency-label">Match Consistency:</h2>
+            <!-- <label for="consistency"></label> -->
+            <select name="consistency" id="consistency" aria-labelledby="consistency-label" required>
                 <option value="" selected>--Select one of the following--</option>           
                 <option value="c1">One consistency (no excess liquid).</option>
                 <option value="c2">More than one (mixed liquid and solids in one bite).</option>  

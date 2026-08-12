@@ -1,19 +1,57 @@
-/*   This parts works by grabbing individual input by its id and then its value
+/* Define semantic keys and a storage wrapper for localStorage to avoid key collisions and provide a clear structure for storing and retrieving data. */
+const STORAGE_PREFIX = "foodDrinkApp:v1:";
 
-    let input1 = document.getElementById("itemname"); 
-    let inputVal1 = input1.value;
-    alert("input area 1 value: " + inputVal1);
-    console.log (inputVal1); 
+const STORAGE_KEYS = Object.freeze({
+    itemName: "input1",
+    itemType: "drink-food",
 
-    let input2 = document.getElementById("drinklevel"); 
-    let inputVal2 = input2.value;
-    alert("input area 2 value: " + inputVal2);
+    drinkLevelValue: "input2",
+    drinkLevelText: "input2T",
 
-    let input3 = document.getElementById("foodlevel"); 
-    let inputVal3 = input3.value;
-    alert("input area 3 value: " + inputVal3); 
-    
-*/
+    foodLevelValue: "input3",
+    foodLevelText: "input3T",
+
+    chewBiteValue: "chewbite selection value",
+    chewBiteText: "chewbite selection text",
+
+    stickyValue: "sticky selection value",
+    stickyText: "sticky selection text",
+
+    consistencyValue: "consistency selection value",
+    consistencyText: "consistency selection text",
+
+    thickness1Value: "thickness1 selection value",
+    thickness1Text: "thickness1 selection text",
+
+    thickness2Value: "thickness2 selection value",
+    thickness2Text: "thickness2 selection text",
+
+    biteSizeValue: "size selection value",
+    biteSizeText: "size selection text",
+
+    chewDifficultyValue: "chew selection value",
+    chewDifficultyText: "chew selection text",
+});
+
+const appStorage = {
+    get(key) {
+        return localStorage.getItem(STORAGE_PREFIX + key);
+    },
+
+    set(key, value) {
+        localStorage.setItem(STORAGE_PREFIX + key, value);
+    },
+
+    remove(key) {
+        localStorage.removeItem(STORAGE_PREFIX + key);
+    },
+
+    clear() {
+        Object.keys(localStorage)
+            .filter(key => key.startsWith(STORAGE_PREFIX))
+            .forEach(key => localStorage.removeItem(key));
+    },
+};
 
 
 function dfSelection() {
@@ -37,7 +75,6 @@ function dfSelection() {
 
 
 function getInput() {
-    
     /* This following works by grabing all 3 values from the form tag id and then retrieves individual values*/
     let inputT = document.getElementById("inputValue"); 
     if (inputT !== null) {
@@ -67,10 +104,6 @@ function getInput() {
          console.log ("input val1: " + ipVal1);
          console.log ("input val1a: " + ipVal1a);
         
-         localStorage.clear(); // clear everything first
-         localStorage.setItem("input1", ipVal1);
-         localStorage.setItem("drink-food", ipVal1a);
-
          let ip2 = document.getElementById("drink");
          let ip3 = document.getElementById("food");
         //  console.log("ip2: " + ip2);
@@ -80,24 +113,47 @@ function getInput() {
         //  console.log("dLev: " + dLev);
         //  console.log("fLev: " + fLev);
 
+         let dLevVal = dLev.value;
+         let fLevVal = fLev.value;
+            // if (dLevVal.trim() === "") {
+            //         alert("Please select a drink level.");
+            //         dLev.focus();
+            //         return;
+            // }
+            // if (fLevVal.trim() === "") {
+            //         alert("Please select a food level.");
+            //         fLev.focus();
+            //         return;
+            // }
+            if (ipVal1a === "dl" && dLevVal === "") {
+                alert("Please select a drink level.");
+                dLev.focus();
+                return;
+                }
+
+            if (ipVal1a === "fl" && fLevVal === "") {
+                alert("Please select a food level.");
+                fLev.focus();
+                return;
+                }
+
+         appStorage.clear(); // clear everything first
+         appStorage.set(STORAGE_KEYS.itemName, ipVal1);
+         appStorage.set(STORAGE_KEYS.itemType, ipVal1a);
+
             if (!ip2.classList.contains("hidden")) {
-                let dLevVal = dLev.value; 
+                // let dLevVal = dLev.value;
 
                 if (dLevVal !== "") {
                     // dropdown.focus();
                     console.log ("drink Selection value: " + dLevVal);
-                    localStorage.setItem("input2", dLevVal);
+                    appStorage.set(STORAGE_KEYS.drinkLevelValue, dLevVal);
                     let dLevTxt = dLev.options[dLev.selectedIndex].text;
                     console.log ("input2 txt: " + dLevTxt);
-                    localStorage.setItem("input2T", dLevTxt);
+                    appStorage.set(STORAGE_KEYS.drinkLevelText, dLevTxt);
 
                     fLev.required = false;
                     document.location.href = "index_FD3.html"; // change this to FD3 if selected drink 
-                } 
-                if (dLevVal.trim() === "") {
-                    alert("Please select a drink level.");
-                    dLev.focus();
-                    return;
                 } else {
                     // nothing 
                 }
@@ -107,21 +163,17 @@ function getInput() {
             }
 
             if (!ip3.classList.contains("hidden")) {
-                let fLevVal = fLev.value; 
+                // let fLevVal = fLev.value;
+
                 if (fLevVal !== "") {
                     console.log ("food selection value: " + fLevVal);
-                    localStorage.setItem("input3", fLevVal);
+                    appStorage.set(STORAGE_KEYS.foodLevelValue, fLevVal);
                     let fLevTxt = fLev.options[fLev.selectedIndex].text;
                     console.log ("input3 txt: " + fLevTxt);
-                    localStorage.setItem("input3T", fLevTxt);
+                    appStorage.set(STORAGE_KEYS.foodLevelText, fLevTxt);
 
                     dLev.required = false;
                     document.location.href = "index_FD2.html";
-                } 
-                if (fLevVal.trim() === "") {
-                    alert("Please select a food level.");
-                    fLev.focus();
-                    return;
                 } else {
                     // do nothing 
                 }
@@ -160,10 +212,10 @@ function getInput2() {
         console.log ("selectedT2 value: " + selT2val);
         console.log ("selectedT2 text: " + selT2txt);
 
-        localStorage.setItem("chewbite selection value", selT2val);
-        localStorage.setItem("chewbite selection text", selT2txt); 
+        appStorage.set(STORAGE_KEYS.chewBiteValue, selT2val);
+        appStorage.set(STORAGE_KEYS.chewBiteText, selT2txt);
 
-        let ipVal1a = localStorage.getItem("drink-food");
+        let ipVal1a = appStorage.get(STORAGE_KEYS.itemType);
         console.log ("drink/food selection:" + ipVal1a);
 
 
@@ -206,8 +258,8 @@ function getInput3() {
         console.log ("selectedT3 value: " + selT3val);
         console.log ("selectedT3 text: " + selT3txt);
 
-        localStorage.setItem("sticky selection value", selT3val);
-        localStorage.setItem("sticky selection text", selT3txt); 
+        appStorage.set(STORAGE_KEYS.stickyValue, selT3val);
+        appStorage.set(STORAGE_KEYS.stickyText, selT3txt);
 
         if (selT3val == "st1") {
             document.location.href = "index_FD5.html";
@@ -246,8 +298,8 @@ function getInput4() {
         console.log ("selectedT4 value: " + selT4val);
         console.log ("selectedT4 text: " + selT4txt);
 
-        localStorage.setItem("consistency selection value", selT4val);
-        localStorage.setItem("consistency selection text", selT4txt); 
+        appStorage.set(STORAGE_KEYS.consistencyValue, selT4val);
+        appStorage.set(STORAGE_KEYS.consistencyText, selT4txt);
 
         if (selT4val == "c1") {
             document.location.href = "index_FD7.html";
@@ -285,8 +337,8 @@ function getInput5() {
         console.log ("selectedT5 value: " + selT5val);
         console.log ("selectedT5 text: " + selT5txt);
 
-        localStorage.setItem("thickness1 selection value", selT5val);
-        localStorage.setItem("thickness1 selection text", selT5txt); 
+        appStorage.set(STORAGE_KEYS.thickness1Value, selT5val);
+        appStorage.set(STORAGE_KEYS.thickness1Text, selT5txt);
 
         if (selT5val == "t11") {
             document.location.href = "index_FD90.html";
@@ -328,8 +380,8 @@ function getInput6() {
         console.log ("selectedT6 value: " + selT6val);
         console.log ("selectedT6 text: " + selT6txt);
 
-        localStorage.setItem("thickness2 selection value", selT6val);
-        localStorage.setItem("thickness2 selection text", selT6txt); 
+        appStorage.set(STORAGE_KEYS.thickness2Value, selT6val);
+        appStorage.set(STORAGE_KEYS.thickness2Text, selT6txt);
 
         if (selT6val == "t21") {
             document.location = "index_FD93.html";
@@ -367,8 +419,8 @@ function getInput7() {
         console.log ("selectedT7 value: " + selT7val);
         console.log ("selectedT7 text: " + selT7txt);
 
-        localStorage.setItem("size selection value", selT7val);
-        localStorage.setItem("size selection text", selT7txt); 
+        appStorage.set(STORAGE_KEYS.biteSizeValue, selT7val);
+        appStorage.set(STORAGE_KEYS.biteSizeText, selT7txt);
 
         if (selT7val == "s1") {
             document.location = "index_FD95.html";
@@ -406,8 +458,8 @@ function getInput8() {
         console.log ("selectedT8 value: " + selT8val);
         console.log ("selectedT8 text: " + selT8txt);
 
-        localStorage.setItem("chew selection value", selT8val);
-        localStorage.setItem("chew selection text", selT8txt); 
+        appStorage.set(STORAGE_KEYS.chewDifficultyValue, selT8val);
+        appStorage.set(STORAGE_KEYS.chewDifficultyText, selT8txt);
 
         if (selT8val == "c1") {
             document.location = "index_FD97e.html";
@@ -426,60 +478,56 @@ function getInput8() {
 
 function readStValues() {
 
-    if (localStorage.getItem("input1") !== null) {
-        let storedInput1 = localStorage.getItem("input1");
-        document.getElementById("dispInput1").innerHTML = storedInput1;
+    if (appStorage.get(STORAGE_KEYS.itemName) !== null) {
+        let storedInput1 = appStorage.get(STORAGE_KEYS.itemName);
+        document.getElementById("dispInput1").textContent = storedInput1;
 
-        let storedInput1a = localStorage.getItem("drink-food");
+        let storedInput1a = appStorage.get(STORAGE_KEYS.itemType);
         if (storedInput1a == "dl") {
-            document.getElementById("inputType").innerHTML = "drink";
+            document.getElementById("inputType").textContent = "drink";
         }
         if (storedInput1a == "fl") {
-            document.getElementById("inputType").innerHTML = "eat";
+            document.getElementById("inputType").textContent = "eat";
         }
     
 
-        if (localStorage.getItem("input2") !== null ) {
-            let storedInput2 = localStorage.getItem("input2");
-            let storedInput4 = localStorage.getItem("input2T");
+        if (appStorage.get(STORAGE_KEYS.drinkLevelValue) !== null ) {
+            let storedInput2 = appStorage.get(STORAGE_KEYS.drinkLevelValue);
+            let storedInput4 = appStorage.get(STORAGE_KEYS.drinkLevelText);
             showDRec(); // unhide drink recommendation 
 
-            document.getElementById("dispInput2").innerHTML = storedInput4;
+            document.getElementById("dispInput2").textContent = storedInput4;
         }
-        if (localStorage.getItem("input3") !== null ) {
-            let storedInput3 = localStorage.getItem("input3");
-            let storedInput5 = localStorage.getItem("input3T");
+        if (appStorage.get(STORAGE_KEYS.foodLevelValue) !== null ) {
+            let storedInput3 = appStorage.get(STORAGE_KEYS.foodLevelValue);
+            let storedInput5 = appStorage.get(STORAGE_KEYS.foodLevelText);
             showFRec(); // unhide food recommendation 
 
-            document.getElementById("dispInput3").innerHTML = storedInput5;
+            document.getElementById("dispInput3").textContent = storedInput5;
         }
         else {
             // do nothing 
         }
     } 
 
-    if (localStorage.getItem("chewbite selection text") !== null) {
-
-        let storedInput6 = localStorage.getItem("chewbite selection value");
-        let storedInput7 = localStorage.getItem("chewbite selection text");
+    if (appStorage.get(STORAGE_KEYS.chewBiteValue) !== null) {
+        let storedInput6 = appStorage.get(STORAGE_KEYS.chewBiteValue);
+        let storedInput7 = appStorage.get(STORAGE_KEYS.chewBiteText);
     }
 
-    if (localStorage.getItem("sticky selection value") !== null) {
-
-        let storedInput8 = localStorage.getItem("sticky selection value");
-        let storedInput9 = localStorage.getItem("sticky selection text");
+    if (appStorage.get(STORAGE_KEYS.stickyValue) !== null) {
+        let storedInput8 = appStorage.get(STORAGE_KEYS.stickyValue);
+        let storedInput9 = appStorage.get(STORAGE_KEYS.stickyText);
     }
 
-    if (localStorage.getItem("consistency selection value") !== null) {
-
-        let storedInput10 = localStorage.getItem("consistency selection value");
-        let storedInput11 = localStorage.getItem("consistency selection text");
+    if (appStorage.get(STORAGE_KEYS.consistencyValue) !== null) {
+        let storedInput10 = appStorage.get(STORAGE_KEYS.consistencyValue);
+        let storedInput11 = appStorage.get(STORAGE_KEYS.consistencyText);
     }
 
-    if (localStorage.getItem("thickness1 selection value") !== null) {
-
-        let storedInput12 = localStorage.getItem("thickness1 selection value");
-        let storedInput13 = localStorage.getItem("thickness1 selection text");
+    if (appStorage.get(STORAGE_KEYS.thickness1Value) !== null) {
+        let storedInput12 = appStorage.get(STORAGE_KEYS.thickness1Value);
+        let storedInput13 = appStorage.get(STORAGE_KEYS.thickness1Text);
 
         console.log ('storedInputFD5 value : ' + storedInput12);
 
@@ -487,10 +535,9 @@ function readStValues() {
         decisions (storedInput12);
     }
 
-    if (localStorage.getItem("thickness2 selection value") !== null) {
-
-        let storedInput14 = localStorage.getItem("thickness2 selection value");
-        let storedInput15 = localStorage.getItem("thickness2 selection text");
+    if (appStorage.get(STORAGE_KEYS.thickness2Value) !== null) {
+        let storedInput14 = appStorage.get(STORAGE_KEYS.thickness2Value);
+        let storedInput15 = appStorage.get(STORAGE_KEYS.thickness2Text);
 
         console.log ('storedInputFD6 value : ' + storedInput14);
 
@@ -498,10 +545,9 @@ function readStValues() {
         decisions (storedInput14);
         }
     
-    if (localStorage.getItem("size selection value") !== null) {
-
-        let storedInput16 = localStorage.getItem("size selection value");
-        let storedInput17 = localStorage.getItem("size selection text");
+    if (appStorage.get(STORAGE_KEYS.biteSizeValue) !== null) {
+        let storedInput16 = appStorage.get(STORAGE_KEYS.biteSizeValue);
+        let storedInput17 = appStorage.get(STORAGE_KEYS.biteSizeText);
 
         console.log ('storedInputFD7 value : ' + storedInput16);
 
@@ -509,10 +555,9 @@ function readStValues() {
         decisions (storedInput16);
     }
         
-    if (localStorage.getItem("chew selection value") !== null) {
-
-        let storedInput18 = localStorage.getItem("chew selection value");
-        let storedInput19 = localStorage.getItem("chew selection text");
+    if (appStorage.get(STORAGE_KEYS.chewDifficultyValue) !== null) {
+        let storedInput18 = appStorage.get(STORAGE_KEYS.chewDifficultyValue);
+        let storedInput19 = appStorage.get(STORAGE_KEYS.chewDifficultyText);
 
         console.log ('storedInputFD8 value : ' + storedInput18);
 
@@ -538,10 +583,10 @@ function descriptions() {
 
         console.log ('descript sectino is not null on html');
 
-        let storedInput12 = localStorage.getItem("thickness1 selection value");
-        let storedInput14 = localStorage.getItem("thickness2 selection value");
-        let storedInput16 = localStorage.getItem("size selection value");
-        let storedInput18 = localStorage.getItem("chew selection value");
+        let storedInput12 = appStorage.get(STORAGE_KEYS.thickness1Value);
+        let storedInput14 = appStorage.get(STORAGE_KEYS.thickness2Value);
+        let storedInput16 = appStorage.get(STORAGE_KEYS.biteSizeValue);
+        let storedInput18 = appStorage.get(STORAGE_KEYS.chewDifficultyValue);
 
         // set condition be storedinput value
         if (storedInput12 == "t11") {
@@ -586,16 +631,16 @@ function decisions() {
     let decisions = document.getElementById("decisions");;
 
     if (decisions !== null) {
-        let storedVal1a = localStorage.getItem("drink-food")
+        let storedVal1a = appStorage.get(STORAGE_KEYS.itemType);
         console.log ('drink or food selection :' + storedVal1a);
-        let storedInput2 = localStorage.getItem("input2");
+        let storedInput2 = appStorage.get(STORAGE_KEYS.drinkLevelValue);
         console.log ('storedInput2 value : ' + storedInput2);
-        let storedInput3 = localStorage.getItem("input3");
+        let storedInput3 = appStorage.get(STORAGE_KEYS.foodLevelValue);
         console.log ('storedInput3 value : ' + storedInput3);
-        let storedInput12 = localStorage.getItem("thickness1 selection value");
-        let storedInput14 = localStorage.getItem("thickness2 selection value");
-        let storedInput16 = localStorage.getItem("size selection value");
-        let storedInput18 = localStorage.getItem("chew selection value");
+        let storedInput12 = appStorage.get(STORAGE_KEYS.thickness1Value);
+        let storedInput14 = appStorage.get(STORAGE_KEYS.thickness2Value);
+        let storedInput16 = appStorage.get(STORAGE_KEYS.biteSizeValue);
+        let storedInput18 = appStorage.get(STORAGE_KEYS.chewDifficultyValue);
 
         // IDDSI 0
         if (storedInput12 == "t11" && storedVal1a == "dl") {
@@ -780,10 +825,10 @@ function videoDemo() {
 
         console.log ('the videos section is not null on html');
 
-    let storedInput12 = localStorage.getItem("thickness1 selection value");
-    let storedInput14 = localStorage.getItem("thickness2 selection value");
-    let storedInput16 = localStorage.getItem("size selection value");
-    let storedInput18 = localStorage.getItem("chew selection value");
+    let storedInput12 = appStorage.get(STORAGE_KEYS.thickness1Value);
+    let storedInput14 = appStorage.get(STORAGE_KEYS.thickness2Value);
+    let storedInput16 = appStorage.get(STORAGE_KEYS.biteSizeValue);
+    let storedInput18 = appStorage.get(STORAGE_KEYS.chewDifficultyValue);
 
     let videoFrame = document.getElementById("videoFrame");
         if (storedInput12 == "t11") {

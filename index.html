@@ -24,59 +24,59 @@
 
     <form id="inputValue" name="inputValue" target="_blank">
         <div>
-            <h1>Enter Item Name:</h1>
-            <!-- <label for="itemname">Name:</label> -->
-            <input type="text" id="itemname" name="itemname" placeholder="item name" required>
+            <h1 id="itemname-label">Enter Item Name:</h1>
+
+            <input type="text" id="itemname" name="itemname" aria-labelledby="itemname-label" placeholder="For example, banana" required>
         </div>
         <br><br>
 
-        <div> 
-            <h1>Is it a drink or food?</h1>
-            <label for="drinkfood">
-                <select name="drinkfood" id="drinkfood" required>
-                    <option value="" selected>--Select one of the following--</option>
-                    <option value="dl">Drink/Liquid</option>
-                    <option value="fl">Food/Solid</option>       
-                </select>
-            </label>
+        <div>
+            <h1 id="drinkfood-label">Is it a drink or food?</h1>
+
+            <select name="drinkfood" id="drinkfood" aria-labelledby="drinkfood-label" required>
+                <option value="" selected>--Select one of the following--</option>
+                <option value="dl">Drink/Liquid</option>
+                <option value="fl">Food/Solid</option>
+            </select>
+
         </div>
         <br><br>
 
         <div id= "DF" class="hidden">
-            <section id= "drink" class="hidden"> 
-            <h1>Select Recommended Drink Level:</h1>
-             <label for="drinklevel">
-                <select name="drinklevel" id="drinklevel" required>
+            <section id= "drink" class="hidden">
+            <h1 id="drinklevel-label">Select Recommended Drink Level:</h1>
+             <!-- <label for="drinklevel"> -->
+                <select name="drinklevel" id="drinklevel" aria-labelledby="drinklevel-label" required>
                     <option value="" selected>--Select one of the following--</option>
                     <option value="dl0">IDDSI Level 0, Thin</option>
-                    <option value="dl1">IDDSI Level 1, Slighlty Thick</option>  
+                    <option value="dl1">IDDSI Level 1, Slighlty Thick</option>
                     <option value="dl2">IDDSI Level 2, Mildly Thick</option>
                     <option value="dl3">IDDSI Level 3, Moderately Thick</option>
                     <option value="dl4">IDDSI Level 4, Extremely Thick</option>
-                    <option value="dln">Don't know</option>           
+                    <option value="dln">Don't know</option>
                 </select>
-             </label>
+             <!-- </label> -->
             </section>
             <br><br>
 
             <section id= "food" class="hidden">
-            <h1>Select Recommended Food Level:</h1>
-             <label for="foodlevel">
-                <select name="foodlevel" id="foodlevel" required>
+            <h1 id="foodlevel-label">Select Recommended Food Level:</h1>
+             <!-- <label for="foodlevel"> -->
+                <select name="foodlevel" id="foodlevel" aria-labelledby="foodlevel-label" required>
                     <option value="" selected>--Select one of the following--</option>
                     <option value="fl3">IDDSI Level 3, Liquidised</option>
-                    <option value="fl4">IDDSI Level 4, Pureed</option>  
+                    <option value="fl4">IDDSI Level 4, Pureed</option>
                     <option value="fl5">IDDSI Level 5, Mince & Moist</option>
                     <option value="fl6">IDDSI Level 6, Soft & Bite-Sized</option>
                     <option value="fl7e">IDDSI Level 7, Easy to chew</option>
                     <option value="fl7r">IDDSI Level 7, Regular</option>
-                    <option value="fln">Don't know</option>     
+                    <option value="fln">Don't know</option>
                 </select>
-             </label> 
+             <!-- </label> -->
             </section>
         </div>
         <br><br>
-        
+
         <div>
             <input type="button" id="submit" onclick="getInput()" value="Submit Selection">
         </div>
@@ -87,7 +87,7 @@
     <!-- The following worked outside of the 'form' -->
     <!-- <button onclick="document.location='index_FD2.html'">linked page</button> -->
     <!-- <button onclick="linkedPages()">linked page</button> -->
-<!-- 
+<!--
     <p id="showInput"></p> -->
 
 

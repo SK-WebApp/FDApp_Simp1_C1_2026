@@ -22,10 +22,9 @@
 
     <form id="FD5" name="FD5" target="_blank">
 
-        <h2>Match Thickness:</h2>
-        <!-- <label for="thick1">Thickness:</label> -->
-        <label for="thick1"></label>
-        <select name="thick1" id="thick1" required>
+        <h2 id="thickness1-label">Match Thickness:</h2>
+        <!-- <label for="thick1"></label> -->
+        <select name="thick1" id="thick1" aria-labelledby="thickness1-label" required>
             <option value="" selected>--Select one of the following--</option>           
             <option value="t11">Drips like regular water.</option>
             <option value="t12">Drips like infant formula.</option>  
