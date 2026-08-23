@@ -861,11 +861,11 @@ function videoDemo() {
         } 
         if (storedInput18 == "c1") {
             showVideo();
-            videoFrame.src = "https://www.youtube.com/embed/vzdoFcwpqX0?si=QafjJEGTntN7zIn3&amp;start=16";
+            videoFrame.src = "https://www.youtube.com/embed/vzdoFcwpqX0?si=QafjJEGTntN7zIn3&start=16";
         } 
         if (storedInput18 == "c2") {
             showVideo();
-            videoFrame.src = "https://www.youtube.com/embed/vzdoFcwpqX0?si=QafjJEGTntN7zIn3&amp;start=00&&end=16";
+            videoFrame.src = "https://www.youtube.com/embed/vzdoFcwpqX0?si=QafjJEGTntN7zIn3&start=0&end=16";
         }  
         else {
             // do nothing 

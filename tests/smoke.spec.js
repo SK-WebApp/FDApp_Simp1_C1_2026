@@ -181,6 +181,58 @@ for (const videoPage of videoPages) {
   });
 }
 
+const level7VideoCases = [
+  {
+    chewLevel: 'c1',
+    resultPage: 'index_FD97e.html',
+    start: '16',
+    end: null,
+  },
+  {
+    chewLevel: 'c2',
+    resultPage: 'index_FD97r.html',
+    start: '0',
+    end: '16',
+  },
+];
+
+for (const videoCase of level7VideoCases) {
+  test(`${videoCase.resultPage} configures its video time range`, async ({
+    page,
+  }) => {
+    await page.goto('index.html');
+    await page.locator('#itemname').fill('Banana');
+    await page.locator('#drinkfood').selectOption('fl');
+    await page.locator('#foodlevel').selectOption('fl6');
+    await page.locator('#submit').click();
+
+    await page.locator('#chewbite').selectOption('cb1');
+    await page.locator('#submit').click();
+    await page.locator('#consistency').selectOption('c2');
+    await page.locator('#submit').click();
+    await page.locator('#chew').selectOption(videoCase.chewLevel);
+    await page.locator('#submit').click();
+
+    await expect(page).toHaveURL(new RegExp(`${videoCase.resultPage}$`));
+    await page.locator('#videoDemo').click();
+
+    const videoParameters = await page.locator('#videoFrame').evaluate(frame => {
+      const videoUrl = new URL(frame.src);
+      return {
+        start: videoUrl.searchParams.get('start'),
+        end: videoUrl.searchParams.get('end'),
+        malformedStart: videoUrl.searchParams.get('amp;start'),
+      };
+    });
+
+    expect(videoParameters).toEqual({
+      start: videoCase.start,
+      end: videoCase.end,
+      malformedStart: null,
+    });
+  });
+}
+
 test('starting a workflow preserves unrelated local storage', async ({
   page,
 }) => {
