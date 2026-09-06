@@ -692,7 +692,7 @@ function decisions() {
                 decisions.innerHTML = "<p>You can drink this!</p>";
             }
             if (["dl4"].includes(storedInput2)){
-                decisions.innerHTML = "<p>Sorry, you can't drink can this!.</p>";
+                decisions.innerHTML = "<p>Sorry, you can't drink this!</p>";
             }
             if (storedInput2 == "dln"){
                 decisions.innerHTML = "<p>Please consult with your SLP.</p>";   
@@ -736,7 +736,7 @@ function decisions() {
                 decisions.innerHTML = "<p>You can eat this!</p>";
             }
             if (storedInput3 == "fl3") {
-                decisions.innerHTML = "<p>Sorry, you can't eat can this!.</p>";
+                decisions.innerHTML = "<p>Sorry, you can't eat this!</p>";
             }
             if (storedInput3 == "fln") {
                 decisions.innerHTML = "<p>Please consult with your SLP.</p>";   
