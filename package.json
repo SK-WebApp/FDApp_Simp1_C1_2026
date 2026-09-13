@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/SK-WebApp/FDApp_Simp1_C1_2026#readme",
   "devDependencies": {
-    "@playwright/test": "^1.62.1",
+    "@playwright/test": "^1.63.0",
     "http-server": "^14.1.1"
   }
 }
